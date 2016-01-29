@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+	<script src="/js/common/angular.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid login-view" ng-controller="CreateUser">
+
+      <form class="user-input-form">
+        <h1>Login</h1>
+        <input placeholder="Email Or Mobile No." type="text" ng-model="email" class="form-control" />
+        <input placeholder="New Password" type="password" ng-model="password" class="form-control" />
+        <button class="btn btn-lg btn-primary" ng-click="login()" style="width:100%;margin-top:10px;">Login</button>
+      </form>
+
+    </div>
+  </body>
+  <script src="/js/common/create-user.js"></script>
+</html>

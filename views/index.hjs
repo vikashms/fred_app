@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
   <head>
-    <title>{{ title }}</title>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+    <header> Welcome {{username}} <a href="/logout">logout</a> </header>
+    <div class="container-fluid login-view" ng-controller="NominateUser">
+        <div ng-repeat="oItem in nominationTypes">
+            <label ng-bind="oItem.label"></label>
+
+            <md-autocomplete md-selected-item-change="onSelectItem(oItem,item)" md-autoselect="true" md-search-text="oItem.value" md-items="item in allUsers" md-search-text-change="searchUser(oItem)">
+           	    <span ng-bind="item.name"></span>
+            </md-autocomplete>
+            <label>Selected Users {{oItem.selectedUsers}}</label>
+            <li ng-repeat="user in oItem.selectedUsers" ng-bind="user.name"></li>
+        </div>
+        <span class="btn btn-submit" ng-click="submitForm()">Save</span>
+        <div>
+    </div>
+    </div>
   </body>
+  <script src="/js/angular-app.js"></script>
 </html>

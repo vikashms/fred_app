@@ -16,12 +16,18 @@ angular.module("myApp",[]).config(function(){
                 "&password="+$scope.password,
             type:"GET"
         }).then(function(data){
-            $scope.pageNo = 1;
-            $scope.name = "";
-            $scope.email = "";
-            $scope.mobile = "";
-            $scope.password = "";
-            $scope.getAllRows();
+            if(data.data.success == true){
+                $scope.pageNo = 1;
+                $scope.name = "";
+                $scope.email = "";
+                $scope.mobile = "";
+                $scope.password = "";
+                $scope.getAllRows();
+            }
+            else{
+                alert("error");
+            }
+
         })
     }
     $scope.data = {
@@ -42,6 +48,17 @@ angular.module("myApp",[]).config(function(){
             type:"GET"
         }).then(function(data){
             $scope.data.users = data.data.results;
+        })
+    }
+    $scope.login = function(){
+        $http({
+            url:"/login",
+            method:"post",
+            data:{username:$scope.email,password:$scope.password}
+        }).success(function(data){
+            if(data == "success"){
+                location.replace("/");
+            }
         })
     }
     console.log("create App")
